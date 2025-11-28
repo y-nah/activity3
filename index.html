@@ -4,20 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Activity 3</title>
-
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
 
   <body
-    class="font-['Courier_New',Courier,monospace] p-8 bg-pink-900 text-white"
+    class="font-['Courier_New',Courier,monospace] p-8 bg-gray-800 text-white"
   >
+    <!-- Header -->
     <header class="flex justify-center mb-8">
       <h1 id="title" class="text-3xl text-center">
         &lt; Activity 3: JavaScript Practice /&gt;
       </h1>
     </header>
 
+    <!-- Main content -->
     <main class="space-y-8 pb-52">
+      <!-- DOM Methods Buttons -->
       <div class="flex gap-4 justify-center">
         <button id="button1-1" class="bg-blue-300 py-2 px-4 rounded">
           log by id using getElementById
@@ -42,24 +44,24 @@
 
       <hr />
 
+      <!-- DOM Properties -->
       <div class="flex gap-6">
-        <!-- TOGGLE ON/OFF -->
+        <!-- Toggle button -->
         <div>
           <button id="prop-1" class="py-2 px-4 rounded w-16 bg-green-300">
             on
           </button>
         </div>
 
-        <!-- SHOW STUDENTS + LIST BELOW -->
+        <!-- Show/Hide students -->
         <div class="flex flex-col">
           <button id="prop-2" class="bg-yellow-300 py-2 px-4 rounded">
             Show Students
           </button>
-
           <div id="student-list" class="mt-4"></div>
         </div>
 
-        <!-- INPUT + SUBMIT -->
+        <!-- Input and Submit -->
         <div class="flex flex-col gap-4 items-center">
           <input
             id="prop-3"
@@ -77,8 +79,9 @@
       </div>
     </main>
 
+    <!-- JavaScript -->
     <script>
-      // JavaScript
+      // Variables
       let name = "Trina Ybanez";
       const age = 20;
       const gwapa = true;
@@ -89,6 +92,7 @@
         school: "USC",
       };
 
+      // Functions
       function greet() {
         console.log(`Hello! my name is ${name}. I am ${age} years old.`);
       }
@@ -109,79 +113,75 @@
       }
 
       // DOM Methods
-      {
-        document
-          .getElementById("button1-1")
-          .addEventListener("click", () =>
-            console.log("button by getElementById clicked")
-          );
+      document
+        .getElementById("button1-1")
+        .addEventListener("click", () =>
+          console.log("button by getElementById clicked")
+        );
 
-        document
-          .querySelector("#button1-2")
-          .addEventListener("click", () =>
-            console.log("button by querySelector clicked")
-          );
+      document
+        .querySelector("#button1-2")
+        .addEventListener("click", () =>
+          console.log("button by querySelector clicked")
+        );
 
-        document
-          .querySelector(".button2")
-          .addEventListener("click", () =>
-            console.log("button by class clicked")
-          );
+      document
+        .querySelector(".button2")
+        .addEventListener("click", () =>
+          console.log("button by class clicked")
+        );
 
-        document
-          .querySelector("#element-btn")
-          .addEventListener("click", () =>
-            console.log("button by element clicked")
-          );
+      document
+        .querySelector("#element-btn")
+        .addEventListener("click", () =>
+          console.log("button by element clicked")
+        );
 
-        document
-          .getElementById("button3")
-          .addEventListener("click", () =>
-            console.log(document.getElementById("title").innerText)
-          );
-      }
+      document
+        .getElementById("button3")
+        .addEventListener("click", () =>
+          console.log(document.getElementById("title").innerText)
+        );
 
       // DOM Properties
-      {
-        document.getElementById("prop-1").addEventListener("click", () => {
-          const prop1 = document.getElementById("prop-1");
-          if (prop1.innerText === "off") {
-            prop1.innerText = "on";
-            prop1.classList.add("bg-green-500");
-            prop1.classList.remove("bg-gray-500");
-          } else {
-            prop1.innerText = "off";
-            prop1.classList.add("bg-gray-500");
-            prop1.classList.remove("bg-green-500");
-          }
+      document.getElementById("prop-1").addEventListener("click", () => {
+        const prop1 = document.getElementById("prop-1");
+        if (prop1.innerText === "off") {
+          prop1.innerText = "on";
+          prop1.classList.add("bg-green-500");
+          prop1.classList.remove("bg-gray-500");
+        } else {
+          prop1.innerText = "off";
+          prop1.classList.add("bg-gray-500");
+          prop1.classList.remove("bg-green-500");
+        }
+      });
+
+      const showStudents = () => {
+        const list = document.getElementById("student-list");
+        const ul = document.createElement("ul");
+        ul.classList.add("list-disc", "list-inside");
+
+        ["Vander", "Zyra", "Alex", "Owen", "Xam"].forEach((student) => {
+          const li = document.createElement("li");
+          li.innerText = student;
+          ul.appendChild(li);
         });
 
-        document.getElementById("prop-2").addEventListener("click", () => {
-          const prop2 = document.getElementById("prop-2");
+        list.appendChild(ul);
+      };
 
-          if (prop2.innerText === "Show Students") {
-            prop2.innerText = "Hide Students";
-            showStudents();
-          } else {
-            prop2.innerText = "Show Students";
-            document.getElementById("student-list").innerHTML = "";
-          }
-        });
-
-        const showStudents = () => {
-          const list = document.getElementById("student-list");
-          const ul = document.createElement("ul");
-          ul.classList.add("list-disc", "list-inside");
-
-          ["Vander", "Zyra", "Alex", "Owen", "Xam"].forEach((student) => {
-            const li = document.createElement("li");
-            li.innerText = student;
-            ul.appendChild(li);
-          });
-
-          list.appendChild(ul);
-        };
-      }
+      document.getElementById("prop-2").addEventListener("click", () => {
+        const prop2 = document.getElementById("prop-2");
+        if (prop2.innerText === "Show Students") {
+          prop2.innerText = "Hide Students";
+          showStudents();
+        } else {
+          prop2.innerText = "Show Students";
+          document.getElementById("student-list").innerHTML = "";
+        }
+      });
     </script>
   </body>
 </html>
+
